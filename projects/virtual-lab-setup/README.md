@@ -1,35 +1,36 @@
 # Project: Virtual Lab Setup
 
 ## Objective
-Build an isolated virtual lab where I can practise offensive and defensive
+Build an isolated virtual lab where I can practise reconnaissance and other
 techniques safely and legally, without touching any production or third-party
 system. The lab had to let an "attacker" machine and a "target" machine talk to
-each other while staying cut off from the internet and from my real network.
+each other on a private network.
 
 ## Environment and tools
-- Host: my personal laptop
-- Hypervisor: Oracle VirtualBox
+- Host: my MacBook (macOS)
+- Hypervisor: **UTM** (QEMU based)
 - Attacker VM: Kali Linux
-- Target VM: a deliberately vulnerable/learning VM (e.g. Metasploitable or a basic Linux server)
-- Networking: VirtualBox **host-only** adapter shared by both VMs
+- Target VM: Metasploitable 2 (a deliberately vulnerable learning VM)
+- Networking: both VMs on the same private subnet (`192.168.64.0/24`)
 
 ## Method (step by step)
-1. Installed VirtualBox on the host.
-2. Created the attacker VM (Kali) and the target VM, each with its own virtual disk.
-3. Configured both VMs to use the **same host-only network** so they share a subnet
-   but have no route to the internet.
-4. Booted both VMs and recorded each one's IP address (`ip a`).
-5. Verified connectivity from attacker to target with `ping`.
-6. Took a baseline note of the target's hostname and reachable address.
+1. Installed UTM and created the two VMs (Kali and Metasploitable 2).
+2. Booted the Metasploitable 2 target and reached its login prompt.
+3. Took a clean **`fresh-install` snapshot** of each VM with `qemu-img`, so I can
+   roll back to a known-good state between exercises.
+4. Booted Kali and confirmed both machines were on the same private subnet.
+5. Verified connectivity from the attacker to the target with `ping`.
 
 ## Results
-- Both VMs came up on the same host-only subnet and could reach each other.
-- The lab is isolated: no bridge to the physical LAN or the internet.
+- Both VMs run and sit on the same private subnet, able to reach each other.
+- Each VM has a clean `fresh-install` snapshot to roll back to.
 - This lab is the base used for the [Nmap Service Scan](../nmap-service-scan/) project.
 
-*Evidence:* to be added in a follow-up revision (v1.1) - sanitised screenshots of the VM host-only network settings and of a successful `ping` between the attacker and target VMs. See the `evidence/` folder.
+### Evidence
+- `evidence/metasploitable2-vm-running.png` - the Metasploitable 2 target VM booted to its login prompt in UTM.
+- `evidence/utm-fresh-install-snapshots.png` - `qemu-img snapshot -l` showing the `fresh-install` snapshot on both the Kali and Metasploitable VMs.
 
 ## What I would do differently
-- Snapshot each VM right after setup, so I can roll back to a clean state between exercises.
-- Add a third VM running a simple IDS (for example Security Onion / Suricata) to see
-  the same attacks from the defender's point of view.
+- Add a third VM running a simple IDS (for example Suricata) to see the same
+  activity from the defender's point of view.
+- Document the exact UTM network mode in the repo so the lab is fully reproducible.

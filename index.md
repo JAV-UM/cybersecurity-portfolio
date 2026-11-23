@@ -43,7 +43,7 @@ Honest self-assessment. Where a skill maps to a project here, it is linked.
 | Skill | Level | Evidence |
 |---|---|---|
 | Linux command line | Working knowledge | [Virtual Lab Setup](projects/virtual-lab-setup/) |
-| Virtualisation / home lab (VirtualBox, VMs) | Working knowledge | [Virtual Lab Setup](projects/virtual-lab-setup/) |
+| Virtualisation / home lab (UTM, QEMU) | Working knowledge | [Virtual Lab Setup](projects/virtual-lab-setup/) |
 | Network reconnaissance (Nmap) | Working knowledge | [Nmap Service Scan](projects/nmap-service-scan/) |
 | Packet / traffic analysis (Wireshark) | Beginner | *in progress - Wireshark lab* |
 | Threat models (Cyber Kill Chain) | Working knowledge | TryHackMe: Cyber Kill Chain |

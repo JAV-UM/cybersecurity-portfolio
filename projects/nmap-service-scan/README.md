@@ -1,39 +1,39 @@
 # Project: Nmap Service Scan
 
 ## Objective
-Discover which hosts are alive on my lab subnet and enumerate the services and
-versions exposed by my own target VM, then turn that reconnaissance into defensive
-observations. Scanning was done **only** against a machine I own in my isolated lab.
+Confirm the target is reachable and enumerate the services it exposes, then turn
+that reconnaissance into defensive observations. Scanning was done **only** against
+a machine I own in my isolated lab.
 
 ## Environment and tools
-- Attacker: Kali Linux VM
-- Target: my lab target VM (see [Virtual Lab Setup](../virtual-lab-setup/))
-- Tool: Nmap
-- Network: VirtualBox host-only subnet
+- Attacker: Kali Linux VM (`192.168.64.4`)
+- Target: Metasploitable 2 VM (`192.168.64.5`) - see [Virtual Lab Setup](../virtual-lab-setup/)
+- Tool: Nmap 7.99
+- Network: private UTM subnet `192.168.64.0/24`
 
 ## Method (step by step)
-1. **Host discovery** - swept the lab subnet to find live hosts:
-   `nmap -sn 192.168.56.0/24`
-2. **Port scan** - listed open TCP ports on the target:
-   `nmap <target-ip>`
-3. **Service / version detection** - identified what is actually running:
-   `nmap -sV <target-ip>`
-4. (Optional) default scripts for more detail:
-   `nmap -sC -sV <target-ip>`
-5. Saved the output and reviewed each open service.
+1. **Check my own address:** `ip -4 addr show eth0` -> Kali is `192.168.64.4`.
+2. **Confirm the target is up:** `ping -c 3 192.168.64.5` -> 3/3 replies, 0% loss.
+3. **Port scan:** `sudo nmap -Pn --top-ports 25 192.168.64.5` to list the state of
+   the 25 most common TCP ports on the target.
+4. Reviewed each open service and noted which ones look risky.
 
 ## Results
-- Host discovery found the target alive on the host-only subnet.
-- The port scan revealed the open services (for example SSH, HTTP, etc.).
-- Version detection named the service versions, which is exactly the information an
-  attacker uses to look for known vulnerabilities.
+- The target answered the ping (host is up), confirming connectivity.
+- The scan reported many open services on Metasploitable 2, including
+  `21/ftp`, `22/ssh`, `23/telnet`, `25/smtp`, `53/domain`, `80/http`,
+  `111/rpcbind`, `139/netbios-ssn`, `445/microsoft-ds`, `3306/mysql` and `5900/vnc`.
+- That is a very large attack surface: legacy, cleartext services such as telnet
+  and FTP stand out immediately as the first things an attacker would target.
 
-*Evidence:* to be added in a follow-up revision (v1.1) - sanitised screenshots or text exports of the Nmap host discovery and service/version scan. See the `evidence/` folder.
+### Evidence
+- `evidence/kali-ip-ping-nmap-scan.png` - the full terminal session: `ip addr`, the successful `ping`, and the Nmap output with the open ports.
 
 ## Defensive takeaway / what I would do differently
-- Every open service is attack surface: close or firewall anything not needed.
-- Keep exposed services patched, since version banners reveal exploitable builds.
+- Every open service is attack surface: close or firewall anything not needed, and
+  replace cleartext services (telnet, FTP) with encrypted equivalents (SSH, SFTP).
+- Keep exposed services patched, since old versions are what attackers look for.
 - From the defender's side, this kind of scan is noisy and would be visible to an
-  IDS - a good reason to monitor for sweeps and port scans.
-- Next time I would also compare an unauthenticated scan with an authenticated one
-  to see how much more detail credentials expose.
+  IDS, which is a good reason to monitor for sweeps and port scans.
+- Next time I would add `-sV` for service/version detection to see exactly which
+  builds are running.
