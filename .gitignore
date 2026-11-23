@@ -1,0 +1,29 @@
+# Secrets and credentials - never commit these
+*.pem
+*.key
+*.ppk
+.env
+*.env
+secrets/
+credentials*
+*token*
+*password*
+
+# Local / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Large binaries and captures (keep sanitised exports only)
+*.pcap
+*.pcapng
+*.zip
+*.tar.gz
+*.vmdk
+*.ova
+
+# Jekyll build output
+_site/
+.jekyll-cache/
+.sass-cache/
