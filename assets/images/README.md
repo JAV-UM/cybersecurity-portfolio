@@ -1,1 +1,1 @@
-Images du site (logo, photo pro optionnelle, diagrammes).
+Site images (logo, optional professional photo, lab diagrams).

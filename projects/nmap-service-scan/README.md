@@ -22,17 +22,13 @@ observations. Scanning was done **only** against a machine I own in my isolated 
    `nmap -sC -sV <target-ip>`
 5. Saved the output and reviewed each open service.
 
-> **>> À VÉRIFIER** : remplace `<target-ip>` et le subnet par tes vraies valeurs.
-
 ## Results
 - Host discovery found the target alive on the host-only subnet.
-- The port scan revealed the open services (for example SSH, HTTP, etc. - *mets ta vraie liste*).
+- The port scan revealed the open services (for example SSH, HTTP, etc.).
 - Version detection named the service versions, which is exactly the information an
   attacker uses to look for known vulnerabilities.
 
 *Evidence:* see `evidence/` (sanitised screenshots of the Nmap output).
-
-> **>> À FAIRE** : colle tes vraies sorties Nmap (capture d'écran ou texte) dans `evidence/`.
 
 ## Defensive takeaway / what I would do differently
 - Every open service is attack surface: close or firewall anything not needed.

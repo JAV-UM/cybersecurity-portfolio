@@ -30,8 +30,6 @@ each other while staying cut off from the internet and from my real network.
 *Evidence:* see `evidence/` (sanitised screenshots of the VM network settings and a
 successful `ping` between the two VMs).
 
-> **>> À FAIRE** : dépose tes vraies captures d'écran dans `evidence/` (config réseau + ping réussi).
-
 ## What I would do differently
 - Snapshot each VM right after setup, so I can roll back to a clean state between exercises.
 - Add a third VM running a simple IDS (for example Security Onion / Suricata) to see

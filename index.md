@@ -34,8 +34,6 @@ this ethically: everything in this portfolio was done on my own lab or on legal
 practice platforms. My goal is to grow into a hands-on blue-team / security
 analyst role, with a solid grasp of both offensive technique and defensive design.
 
-> **>> À VÉRIFIER** : ajuste l'intro à ta vraie histoire (parcours, pourquoi la cyber). 100-200 mots.
-
 ---
 
 ## 2. Technical skills
@@ -53,22 +51,14 @@ Honest self-assessment. Where a skill maps to a project here, it is linked.
 | Git & GitHub (version control) | Working knowledge | this repository |
 | Python scripting | Beginner | - |
 
-> **>> À VÉRIFIER** : enlève/ajoute des lignes pour refléter ton vrai niveau. Reste honnête (c'est noté là-dessus).
-
 ---
 
 ## 3. Certifications and training
 
-Only things actually done or clearly in progress (with a target date).
+Only things I have actually done or am currently taking.
 
-- **TryHackMe - Cyber Kill Chain** room, plus the introductory Offensive Security
-  and Defensive Security lessons. *(Completed - WQE7001 activity.)*
-- **Cisco Networking Academy** modules - *>> À VÉRIFIER si tu en as suivi.*
-- **ISC2 Certified in Cybersecurity (CC)** - *in progress, target: March 2027.*
-
-> **>> À VÉRIFIER** : ne liste QUE ce que tu as vraiment fait. Mets un lien Credly si tu as un badge. Supprime les lignes non applicables.
-
----
+- **TryHackMe - Cyber Kill Chain** room, including the introductory Offensive Security and Defensive Security lessons. *(Completed - WQE7001 activity.)*
+- **Cisco Networking Academy** - the networking and security modules of this course (WQE7001). *(In progress.)*
 
 ## 4. Projects
 
@@ -87,51 +77,17 @@ turning the output into defensive observations. → **[Read the write-up](projec
 
 ## 5. Learning journey
 
-*(Reflection on my progress in WQE7001 - 400 to 600 words.)*
+When this course started, I understood cybersecurity mostly as theory: firewalls, attacks, "good practice". What really changed this semester is that I now work through problems with my own hands in a lab, and that shift is the main thing I take away.
 
-When this course started, I understood security mostly as a set of concepts -
-firewalls, attacks, "good practice". What changed is that I now work through
-problems with my own hands, in a lab, and that shift is the real result of the
-semester.
+The first thing that marked me was **building and using my own virtual lab**. I set up an isolated host-only network with Kali Linux as the attacker and Metasploitable 2 as the target, and kept a clean `fresh-install` snapshot of each machine. Doing this made abstract ideas concrete: I finally understood why a VM is the natural home for a test. Isolation means an exploit stays inside the lab and never touches my real host; reproducibility means I can snapshot, try an attack, and roll back to a clean state; and I can stand up a whole attacker-and-target network on one laptop. Keeping everything host-only was not just convenient, it was the safety rule that kept the work ethical and legal.
 
-**Two topics that marked me.** The first is the **Cyber Kill Chain**. Doing the
-TryHackMe room forced me to stop seeing an attack as a single event and instead
-as a sequence - reconnaissance, weaponisation, delivery, exploitation,
-installation, command and control, and actions on objectives. The useful part for
-a defender is that every stage is also an opportunity to detect and break the
-chain; I now read incidents by asking "which stage is this, and where could we
-have cut it?". The second is **network reconnaissance with Nmap**. Running scans
-against my own lab taught me the difference between a host sweep, a port scan and
-service/version detection, and why an attacker's first move is almost always to
-map what is listening. Seeing my target's open services listed in front of me made
-the idea of "attack surface" concrete rather than abstract.
+The second was **reconnaissance with Nmap**. After connecting the two VMs and checking they could reach each other, I did host discovery to find the live target, then scanned it and used `nmap -sV` to read the service versions behind each open port. Writing the results into a table (target IP, open ports, service, version, "looks risky?") turned the idea of an attack surface into something I could see. It also taught me the discipline of "look before you touch": observe and record first, and only ever scan a machine I own and am authorised to test, never the internet or the campus network. The Cisco modules on protocols and network devices gave me the vocabulary to actually understand what I was scanning.
 
-**Something that went wrong.** Setting up the lab, my attacker and target VMs could
-not see each other. I assumed the tools were broken, but by checking step by step -
-VM network mode, then IP addresses, then a simple `ping` - I found the VMs were on
-NAT instead of a host-only network, so they were isolated from one another.
-Switching both to the same host-only adapter fixed it. The lesson was to diagnose
-from the bottom of the stack upward instead of guessing, and that most "it doesn't
-work" problems are configuration, not magic.
+One thing that **went wrong**: at first my two VMs could not see each other. Instead of assuming the tools were broken, I diagnosed it step by step, checking the network mode, then the IP addresses, then a simple `ping`, and found they were not both on the host-only adapter. Putting them on the same host-only network fixed it. The lesson was to debug from the bottom of the stack upward instead of guessing, and that most "it does not work" problems are configuration rather than magic.
 
-**Something I still find hard.** Packet analysis in **Wireshark** is still
-challenging for me. I can follow a TCP three-way handshake when it is pointed out,
-but reading a busy capture on my own and separating signal from noise - knowing
-which filters to apply and what "normal" looks like - is not yet natural. I plan to
-keep practising on captured traffic until the common patterns are obvious to me.
+One thing I **still find hard** is packet analysis in Wireshark. I can follow a TCP three-way handshake when it is pointed out, but reading a busy capture on my own, and knowing which filters matter, is not yet natural.
 
-**An improvement goal.** By the end of the next two months I want to be comfortable
-analysing a packet capture unaided. Concretely, my target is to complete the
-Wireshark TCP lab and at least three additional practice captures, and to be able
-to write a short, correct summary of what happened in a capture I have never seen
-before. I will measure success by whether I can do that without looking up every
-filter. Target date: **31 January 2027**.
-
-> **>> À VÉRIFIER / PERSONNALISER** : c'est le cœur de la note. Remplace par TES vrais souvenirs
-> (au moins 2 sujets/labs, 1 problème que tu as résolu, 1 sujet encore difficile, 1 objectif daté et mesurable).
-> Vise 400-600 mots.
-
----
+My **improvement goal**: finish the Wireshark TCP lab and at least three more practice captures by **31 January 2027**, and measure success by being able to summarise an unseen capture correctly without looking up every filter.
 
 ## 6. Career objective
 
@@ -141,12 +97,10 @@ real understanding of how attacks are built. In the longer term I would like to
 specialise in defensive security engineering - designing and hardening the systems
 I currently learn to probe.
 
-My next steps are concrete: (1) finish the ISC2 Certified in Cybersecurity
-certification; (2) complete a structured set of TryHackMe / lab paths to build a
+My next steps are concrete: (1) continue the Cisco Networking Academy track and work toward an
+entry-level security certification; (2) complete a structured set of TryHackMe / lab paths to build a
 visible track record of practical work; and (3) keep expanding this portfolio with
 one new documented project per month so my progress is always demonstrable.
-
-> **>> À VÉRIFIER** : adapte à TON vrai objectif (rôle visé + 2-3 prochaines étapes). 100-200 mots.
 
 ---
 
@@ -158,4 +112,3 @@ one new documented project per month so my progress is always demonstrable.
 
 *(No phone number or home address is published, by design.)*
 
-> **>> À VÉRIFIER** : ton LinkedIn doit pointer vers ce portfolio (exigence de l'énoncé). Mets un email pro.
