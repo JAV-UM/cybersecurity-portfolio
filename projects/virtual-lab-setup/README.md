@@ -27,8 +27,7 @@ each other while staying cut off from the internet and from my real network.
 - The lab is isolated: no bridge to the physical LAN or the internet.
 - This lab is the base used for the [Nmap Service Scan](../nmap-service-scan/) project.
 
-*Evidence:* see `evidence/` (sanitised screenshots of the VM network settings and a
-successful `ping` between the two VMs).
+*Evidence:* to be added in a follow-up revision (v1.1) - sanitised screenshots of the VM host-only network settings and of a successful `ping` between the attacker and target VMs. See the `evidence/` folder.
 
 ## What I would do differently
 - Snapshot each VM right after setup, so I can roll back to a clean state between exercises.

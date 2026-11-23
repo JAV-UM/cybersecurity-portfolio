@@ -28,7 +28,7 @@ observations. Scanning was done **only** against a machine I own in my isolated 
 - Version detection named the service versions, which is exactly the information an
   attacker uses to look for known vulnerabilities.
 
-*Evidence:* see `evidence/` (sanitised screenshots of the Nmap output).
+*Evidence:* to be added in a follow-up revision (v1.1) - sanitised screenshots or text exports of the Nmap host discovery and service/version scan. See the `evidence/` folder.
 
 ## Defensive takeaway / what I would do differently
 - Every open service is attack surface: close or firewall anything not needed.
