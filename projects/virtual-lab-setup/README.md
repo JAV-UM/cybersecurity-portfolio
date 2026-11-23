@@ -27,8 +27,14 @@ each other on a private network.
 - This lab is the base used for the [Nmap Service Scan](../nmap-service-scan/) project.
 
 ### Evidence
-- `evidence/metasploitable2-vm-running.png` - the Metasploitable 2 target VM booted to its login prompt in UTM.
-- `evidence/utm-fresh-install-snapshots.png` - `qemu-img snapshot -l` showing the `fresh-install` snapshot on both the Kali and Metasploitable VMs.
+
+![Metasploitable 2 target VM booted to its login prompt in UTM](evidence/metasploitable2-vm-running.png)
+
+*The Metasploitable 2 target VM running in UTM, at its login prompt.*
+
+![qemu-img snapshot list showing a fresh-install snapshot on the Kali and Metasploitable VMs](evidence/utm-fresh-install-snapshots.png)
+
+*`qemu-img snapshot -l` showing the clean `fresh-install` snapshot on both the Kali and Metasploitable 2 VMs.*
 
 ## What I would do differently
 - Add a third VM running a simple IDS (for example Suricata) to see the same

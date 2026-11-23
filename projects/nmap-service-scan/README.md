@@ -27,7 +27,10 @@ a machine I own in my isolated lab.
   and FTP stand out immediately as the first things an attacker would target.
 
 ### Evidence
-- `evidence/kali-ip-ping-nmap-scan.png` - the full terminal session: `ip addr`, the successful `ping`, and the Nmap output with the open ports.
+
+![Kali terminal showing ip addr, a successful ping to the target, and the Nmap scan output with open ports](evidence/kali-ip-ping-nmap-scan.png)
+
+*Full terminal session: `ip addr` (Kali is `192.168.64.4`), the successful `ping` to `192.168.64.5`, and the Nmap output listing the open ports.*
 
 ## Defensive takeaway / what I would do differently
 - Every open service is attack surface: close or firewall anything not needed, and
